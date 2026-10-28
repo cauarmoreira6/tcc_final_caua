@@ -12,11 +12,13 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Substituir credenciais do banco
+        env:
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASS: ${{ secrets.DB_PASS }}
         run: |
-          sed -i "s/__DB_HOST__/${{ secrets.DB_HOST }}/g" config.php
-          sed -i "s/__DB_NAME__/${{ secrets.DB_NAME }}/g" config.php
-          sed -i "s/__DB_USER__/${{ secrets.DB_USER }}/g" config.php
-          sed -i "s/__DB_PASS__/${{ secrets.DB_PASS }}/g" config.php
+          python3 -c "import os,pathlib; p=pathlib.Path('config.php'); s=p.read_text(); s=s.replace('__DB_HOST__',os.environ['DB_HOST']).replace('__DB_NAME__',os.environ['DB_NAME']).replace('__DB_USER__',os.environ['DB_USER']).replace('__DB_PASS__',os.environ['DB_PASS']); p.write_text(s)"
 
       - name: Publicar via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5

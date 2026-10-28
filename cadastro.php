@@ -11,13 +11,13 @@ if (isset($_SESSION['usuario_id'])) {
     exit();
 }
 
-require_once __DIR__ . '/includes/conexao.php';
-
 $erro = '';
 $series = ['6º ano', '7º ano', '8º ano', '9º ano'];
 
 // ---- Processa o formulário de cadastro ----
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    require_once __DIR__ . '/includes/conexao.php';
 
     $nome  = trim($_POST['nome']  ?? '');
     $email = trim($_POST['email'] ?? '');

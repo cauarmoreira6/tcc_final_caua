@@ -11,13 +11,13 @@ if (isset($_SESSION['usuario_id'])) {
     exit();
 }
 
-require_once __DIR__ . '/includes/conexao.php';
-
 $erro    = '';
 $sucesso = '';
 
 // Processa o formulário de login
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    require_once __DIR__ . '/includes/conexao.php';
 
     $email = trim($_POST['email'] ?? '');
     $senha = trim($_POST['senha'] ?? '');
