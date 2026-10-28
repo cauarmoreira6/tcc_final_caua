@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/config.php';
 // ============================================================
 // Educa Play — Cadastro
 // ============================================================
@@ -6,11 +7,11 @@ session_start();
 
 // Se já está logado, redireciona para o dashboard
 if (isset($_SESSION['usuario_id'])) {
-    header('Location: /site_antigravity/dashboard.php');
+    header('Location: ' . BASE_URL . '/dashboard.php');
     exit();
 }
 
-require_once 'includes/conexao.php';
+require_once __DIR__ . '/includes/conexao.php';
 
 $erro = '';
 $series = ['6º ano', '7º ano', '8º ano', '9º ano'];
@@ -86,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stmt2->execute();
                 $stmt2->close();
 
-                header('Location: /site_antigravity/login.php?cadastro=ok');
+                header('Location: ' . BASE_URL . '/login.php?cadastro=ok');
                 exit();
             } else {
                 $erro = 'Erro ao criar conta. Tente novamente.';
@@ -103,7 +104,7 @@ $versao_css = time();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Criar Conta — Educa Play</title>
-    <link rel="stylesheet" href="/site_antigravity/css/login.css?v=<?= $versao_css ?>">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/login.css?v=<?= $versao_css ?>">
     <style>
         *, *::before, *::after {
             box-sizing: border-box !important;
@@ -287,7 +288,7 @@ $versao_css = time();
         <div class="auth-logo">
             <img
                 class="auth-brand-logo"
-                src="/site_antigravity/assets/images/educa-play-logo.png"
+                src="<?= BASE_URL ?>/assets/images/educa-play-logo.png"
                 alt="Educa Play"
                 width="160"
                 height="160"
@@ -422,17 +423,17 @@ $versao_css = time();
         <!-- Link para login -->
         <div class="auth-switch">
             Já tem uma conta?
-            <a href="/site_antigravity/login.php">Fazer login</a>
+            <a href="<?= BASE_URL ?>/login.php">Fazer login</a>
         </div>
 
         <div class="auth-back">
-            <a href="/site_antigravity/index.php">Voltar para a página inicial</a>
+            <a href="<?= BASE_URL ?>/index.php">Voltar para a página inicial</a>
         </div>
 
     </div>
     </main>
 
-    <script src="/site_antigravity/js/password-toggle.js"></script>
+    <script src="<?= BASE_URL ?>/js/password-toggle.js"></script>
 
     <!-- Validação no cliente -->
     <script>

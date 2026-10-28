@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/config.php';
 // ============================================================
 // Educa Play — Login
 // ============================================================
@@ -6,11 +7,11 @@ session_start();
 
 // Se já está logado, redireciona direto para o dashboard
 if (isset($_SESSION['usuario_id'])) {
-    header('Location: /site_antigravity/dashboard.php');
+    header('Location: ' . BASE_URL . '/dashboard.php');
     exit();
 }
 
-require_once 'includes/conexao.php';
+require_once __DIR__ . '/includes/conexao.php';
 
 $erro    = '';
 $sucesso = '';
@@ -50,9 +51,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['nivel'] = $prog['nivel']  ?? 1;
 
                 if ($usuario['tipo'] === 'admin') {
-                    header('Location: /site_antigravity/admin/dashboard.php');
+                    header('Location: ' . BASE_URL . '/admin/dashboard.php');
                 } else {
-                    header('Location: /site_antigravity/dashboard.php');
+                    header('Location: ' . BASE_URL . '/dashboard.php');
                 }
                 exit();
 
@@ -72,7 +73,7 @@ $versao_css = time();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login — Educa Play</title>
-    <link rel="stylesheet" href="/site_antigravity/css/login.css?v=<?= $versao_css ?>">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/login.css?v=<?= $versao_css ?>">
     <style>
         *, *::before, *::after {
             box-sizing: border-box !important;
@@ -139,7 +140,7 @@ $versao_css = time();
         <div class="auth-logo">
             <img
                 class="auth-brand-logo"
-                src="/site_antigravity/assets/images/educa-play-logo.png"
+                src="<?= BASE_URL ?>/assets/images/educa-play-logo.png"
                 alt="Educa Play"
                 width="160"
                 height="160"
@@ -200,17 +201,17 @@ $versao_css = time();
         <!-- Link para cadastro -->
         <div class="auth-switch">
             Não tem conta ainda?
-            <a href="/site_antigravity/cadastro.php">Criar conta</a>
+            <a href="<?= BASE_URL ?>/cadastro.php">Criar conta</a>
         </div>
 
         <!-- Link para página inicial -->
         <div class="auth-back">
-            <a href="/site_antigravity/index.php">Voltar para a página inicial</a>
+            <a href="<?= BASE_URL ?>/index.php">Voltar para a página inicial</a>
         </div>
 
     </div>
     </main>
 
-    <script src="/site_antigravity/js/password-toggle.js"></script>
+    <script src="<?= BASE_URL ?>/js/password-toggle.js"></script>
 </body>
 </html>

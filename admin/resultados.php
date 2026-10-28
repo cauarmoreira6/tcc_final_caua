@@ -1,10 +1,11 @@
 <?php
+require_once dirname(__DIR__) . '/config.php';
 // ============================================================
 // Educa Play — Admin: Resultados e Histórico
 // ============================================================
-require_once '../includes/verificar_login.php';
+require_once dirname(__DIR__) . '/includes/verificar_login.php';
 verificar_admin();
-require_once '../includes/conexao.php';
+require_once dirname(__DIR__) . '/includes/conexao.php';
 
 // Filtros opcionais por jogo e sala.
 $filtro_jogo = (int)($_GET['jogo'] ?? 0);
@@ -64,7 +65,7 @@ $stmt->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Histórico de Partidas — Educa Play</title>
-    <link rel="stylesheet" href="/site_antigravity/css/dashboard.css?v=20261023-logo">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/dashboard.css?v=20261023-logo">
     <style>
         .filter-submit {
             display: inline-flex;
@@ -144,7 +145,7 @@ $stmt->close();
 <body>
 <div class="app-layout">
 
-    <?php require_once '../includes/header.php'; ?>
+    <?php require_once dirname(__DIR__) . '/includes/header.php'; ?>
 
     <main id="main-content" class="main-content" tabindex="-1">
         <div class="topbar">
@@ -152,14 +153,14 @@ $stmt->close();
                 <h1> Relatório de Resultados</h1>
                 <p>Histórico detalhado de todas as partidas jogadas</p>
             </div>
-            <a href="/site_antigravity/admin/dashboard.php" class="btn btn-outline btn-sm">← Voltar ao Painel</a>
+            <a href="<?= BASE_URL ?>/admin/dashboard.php" class="btn btn-outline btn-sm">← Voltar ao Painel</a>
         </div>
 
         <!-- Filtros rápidos -->
         <div class="card" style="margin-bottom:20px;padding:16px 20px;">
             <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
                 <span id="filtroJogoLabel" style="font-weight:700;font-size:0.9rem;color:#2d3436;">Filtrar por Jogo:</span>
-                <a href="/site_antigravity/admin/resultados.php<?= $sala_selecionada !== null ? '?sala=' . urlencode($sala_selecionada['codigo']) : '' ?>" class="btn btn-sm <?= $filtro_jogo === 0 ? 'btn-primary' : 'btn-outline' ?>">Todos</a>
+                <a href="<?= BASE_URL ?>/admin/resultados.php<?= $sala_selecionada !== null ? '?sala=' . urlencode($sala_selecionada['codigo']) : '' ?>" class="btn btn-sm <?= $filtro_jogo === 0 ? 'btn-primary' : 'btn-outline' ?>">Todos</a>
                 <?php
                 $nomes_jogos = [
                     1 => 'Inteiros',
@@ -177,10 +178,10 @@ $stmt->close();
                         $parametros_link['sala'] = $sala_selecionada['codigo'];
                     }
                 ?>
-                <a href="/site_antigravity/admin/resultados.php?<?= htmlspecialchars(http_build_query($parametros_link)) ?>" class="btn btn-sm <?= $filtro_jogo === $jogo_id ? 'btn-primary' : 'btn-outline' ?>"><?= htmlspecialchars($nome_jogo) ?></a>
+                <a href="<?= BASE_URL ?>/admin/resultados.php?<?= htmlspecialchars(http_build_query($parametros_link)) ?>" class="btn btn-sm <?= $filtro_jogo === $jogo_id ? 'btn-primary' : 'btn-outline' ?>"><?= htmlspecialchars($nome_jogo) ?></a>
                 <?php endforeach; ?>
             </div>
-            <form method="get" action="/site_antigravity/admin/resultados.php" style="display:flex;align-items:end;gap:12px;flex-wrap:wrap;margin-top:16px;">
+            <form method="get" action="<?= BASE_URL ?>/admin/resultados.php" style="display:flex;align-items:end;gap:12px;flex-wrap:wrap;margin-top:16px;">
                 <?php if ($filtro_jogo >= 1 && $filtro_jogo <= 8): ?>
                     <input type="hidden" name="jogo" value="<?= $filtro_jogo ?>">
                 <?php endif; ?>
@@ -202,7 +203,7 @@ $stmt->close();
                     Filtrar sala
                 </button>
                 <?php if ($sala_selecionada !== null): ?>
-                    <a class="btn btn-outline btn-sm" href="/site_antigravity/admin/resultados.php<?= $filtro_jogo >= 1 && $filtro_jogo <= 8 ? '?jogo=' . $filtro_jogo : '' ?>">Limpar sala</a>
+                    <a class="btn btn-outline btn-sm" href="<?= BASE_URL ?>/admin/resultados.php<?= $filtro_jogo >= 1 && $filtro_jogo <= 8 ? '?jogo=' . $filtro_jogo : '' ?>">Limpar sala</a>
                 <?php endif; ?>
             </form>
         </div>

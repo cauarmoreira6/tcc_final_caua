@@ -1,9 +1,10 @@
 <?php
+require_once __DIR__ . '/config.php';
 // ============================================================
 // Educa Play — Conquistas / Medalhas
 // ============================================================
-require_once 'includes/verificar_login.php';
-require_once 'includes/conexao.php';
+require_once __DIR__ . '/includes/verificar_login.php';
+require_once __DIR__ . '/includes/conexao.php';
 
 $uid = $_SESSION['usuario_id'];
 
@@ -34,12 +35,12 @@ $conquistadas_nomes = array_column($minhas, 'medalha');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conquistas — Educa Play</title>
-    <link rel="stylesheet" href="/site_antigravity/css/dashboard.css?v=20261023-logo">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/dashboard.css?v=20261023-logo">
 </head>
 <body>
 <div class="app-layout">
 
-    <?php require_once 'includes/header.php'; ?>
+    <?php require_once __DIR__ . '/includes/header.php'; ?>
 
     <main id="main-content" class="main-content" tabindex="-1">
 
@@ -118,7 +119,7 @@ $conquistadas_nomes = array_column($minhas, 'medalha');
         <?php if (count($minhas) < count($todas_medalhas)): ?>
         <div style="text-align:center;margin-top:32px;">
             <p style="color:#636e72;margin-bottom:16px;">Continue jogando para desbloquear mais medalhas!</p>
-            <a href="/site_antigravity/jogos.php" class="btn btn-primary"> Ir para os Jogos</a>
+            <a href="<?= BASE_URL ?>/jogos.php" class="btn btn-primary"> Ir para os Jogos</a>
         </div>
         <?php else: ?>
         <div style="text-align:center;margin-top:32px;padding:30px;background:#fff;border-radius:14px;box-shadow:0 4px 20px rgba(0,0,0,0.08);">

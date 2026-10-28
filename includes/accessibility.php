@@ -1,3 +1,8 @@
+<?php
+require_once dirname(__DIR__) . '/config.php';
+?>
+<script>window.BASE_URL = <?= json_encode(BASE_URL, JSON_UNESCAPED_SLASHES) ?>;</script>
+
 <a class="skip-link" href="#main-content">Pular para o conteúdo principal</a>
 
 <details class="accessibility-tools">
@@ -15,4 +20,4 @@
     </div>
 </details>
 
-<script src="/site_antigravity/js/accessibility.js" defer></script>
+<script src="<?= BASE_URL ?>/js/accessibility.js" defer></script>

@@ -1,9 +1,10 @@
 <?php
+require_once __DIR__ . '/config.php';
 // ============================================================
 // Educa Play — Perfil do Aluno
 // ============================================================
-require_once 'includes/verificar_login.php';
-require_once 'includes/conexao.php';
+require_once __DIR__ . '/includes/verificar_login.php';
+require_once __DIR__ . '/includes/conexao.php';
 
 $uid = $_SESSION['usuario_id'];
 $erro_foto = '';
@@ -160,7 +161,7 @@ $avatar_path = $usuario['avatar_path'] ?? null;
 $_SESSION['avatar_path'] = $avatar_path;
 $avatar_nome = is_string($avatar_path) ? basename($avatar_path) : '';
 $avatar_url = preg_match('/\A[a-f0-9]{32}\.(?:jpg|png|webp|avif)\z/', $avatar_nome)
-    ? '/site_antigravity/uploads/profile_photos/' . rawurlencode($avatar_nome)
+    ? BASE_URL . '/uploads/profile_photos/' . rawurlencode($avatar_nome)
     : null;
 $membro_desde = date('d/m/Y', strtotime($usuario['criado_em'] ?? 'now'));
 ?>
@@ -173,12 +174,12 @@ $membro_desde = date('d/m/Y', strtotime($usuario['criado_em'] ?? 'now'));
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
-    <link rel="stylesheet" href="/site_antigravity/css/dashboard.css?v=20261023-logo">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/dashboard.css?v=20261023-logo">
 </head>
 <body>
 <div class="app-layout">
 
-    <?php require_once 'includes/header.php'; ?>
+    <?php require_once __DIR__ . '/includes/header.php'; ?>
 
     <main id="main-content" class="main-content" tabindex="-1">
 
@@ -275,7 +276,7 @@ $membro_desde = date('d/m/Y', strtotime($usuario['criado_em'] ?? 'now'));
                         <div style="font-size:3rem;font-weight:900;color:#f39c12;"><?= $total_medalhas ?></div>
                         <div style="font-size:0.85rem;color:#636e72;">de 7 possíveis</div>
                     </div>
-                    <a href="/site_antigravity/conquistas.php" class="btn btn-outline btn-sm w-100" style="text-align:center;">Ver Conquistas →</a>
+                    <a href="<?= BASE_URL ?>/conquistas.php" class="btn btn-outline btn-sm w-100" style="text-align:center;">Ver Conquistas →</a>
                 </div>
             </div>
 
@@ -317,7 +318,7 @@ $membro_desde = date('d/m/Y', strtotime($usuario['criado_em'] ?? 'now'));
                     ?>
                     <?php if (empty($por_jogo)): ?>
                         <p style="color:#b2bec3;text-align:center;padding:20px;">
-                            Você ainda não jogou. <a href="/site_antigravity/jogos.php" style="color:#6c63ff;">Comece agora! <span class="google-icon" aria-hidden="true">sports_esports</span></a>
+                            Você ainda não jogou. <a href="<?= BASE_URL ?>/jogos.php" style="color:#6c63ff;">Comece agora! <span class="google-icon" aria-hidden="true">sports_esports</span></a>
                         </p>
                     <?php else: ?>
                         <div style="overflow-x:auto;">

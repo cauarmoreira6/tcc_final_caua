@@ -1,6 +1,7 @@
 <?php
-require_once '../includes/verificar_login.php';
-require_once '../includes/serie_jogos.php';
+require_once dirname(__DIR__) . '/config.php';
+require_once dirname(__DIR__) . '/includes/verificar_login.php';
+require_once dirname(__DIR__) . '/includes/serie_jogos.php';
 
 $jogos_portugues = [
     5 => [
@@ -41,12 +42,12 @@ if ($jogo === null) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= htmlspecialchars($jogo['nome']) ?> — Educa Play</title>
-    <link rel="stylesheet" href="/site_antigravity/css/dashboard.css?v=20261023-logo">
-    <link rel="stylesheet" href="/site_antigravity/css/jogos.css?v=20260616-accessibility">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/dashboard.css?v=20261023-logo">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/jogos.css?v=20260616-accessibility">
 </head>
 <body>
 <div class="app-layout">
-    <?php require_once '../includes/header.php'; ?>
+    <?php require_once dirname(__DIR__) . '/includes/header.php'; ?>
     <main id="main-content" class="main-content" tabindex="-1">
         <div class="topbar">
             <div>
@@ -54,7 +55,7 @@ if ($jogo === null) {
                 <p><?= htmlspecialchars($jogo['tema']) ?></p>
                 <p>Dificuldade adaptada para o <?= htmlspecialchars($serie_escolar) ?></p>
             </div>
-            <a href="/site_antigravity/jogos.php" class="btn btn-outline btn-sm">← Voltar aos jogos</a>
+            <a href="<?= BASE_URL ?>/jogos.php" class="btn btn-outline btn-sm">← Voltar aos jogos</a>
         </div>
 
         <div class="game-wrapper portuguese-game portuguese-game-<?= (int)$jogo_portugues_id ?>">
@@ -113,8 +114,8 @@ if ($jogo === null) {
                 <div id="conquistaBox" class="portuguese-achievements"><strong> Nova conquista!</strong><div id="conquistaLista"></div></div>
                 <div class="result-buttons">
                     <button class="btn btn-primary" onclick="reiniciarJogo()"> Jogar novamente</button>
-                    <a href="/site_antigravity/jogos.php" class="btn btn-outline">Outros jogos</a>
-                    <a href="/site_antigravity/dashboard.php" class="btn btn-outline">Dashboard</a>
+                    <a href="<?= BASE_URL ?>/jogos.php" class="btn btn-outline">Outros jogos</a>
+                    <a href="<?= BASE_URL ?>/dashboard.php" class="btn btn-outline">Dashboard</a>
                 </div>
             </section>
         </div>
@@ -125,7 +126,7 @@ if ($jogo === null) {
     const JOGO_PORTUGUES_NOME = <?= json_encode($jogo['nome'], JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?>;
     const ANO_ESCOLAR = <?= (int)$ano_escolar ?>;
 </script>
-<script src="/site_antigravity/js/serie_jogos.js"></script>
-<script src="/site_antigravity/js/jogos_portugues.js?v=20261021-streak"></script>
+<script src="<?= BASE_URL ?>/js/serie_jogos.js"></script>
+<script src="<?= BASE_URL ?>/js/jogos_portugues.js?v=20261021-streak"></script>
 </body>
 </html>

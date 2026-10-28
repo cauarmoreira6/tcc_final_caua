@@ -1,10 +1,16 @@
+<?php
+// REMOVER DEPOIS: diagnóstico temporário para mostrar erros fatais no servidor
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+require_once __DIR__ . '/config.php';
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Educa Play — Plataforma Educacional</title>
-    <link rel="stylesheet" href="/site_antigravity/css/style.css?v=20261023-logo">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/style.css?v=20261028-portability">
 </head>
 <body>
 
@@ -14,15 +20,15 @@
     <nav class="navbar-home" aria-label="Navegação principal">
         <div class="nav-brand">
             <img
-                src="/site_antigravity/assets/images/educa-play-logo.png"
+                src="<?= BASE_URL ?>/assets/images/educa-play-logo.png"
                 alt="Educa Play"
                 width="72"
                 height="72"
             >
         </div>
         <div class="nav-links">
-            <a href="/site_antigravity/login.php" class="btn btn-outline">Entrar</a>
-            <a href="/site_antigravity/cadastro.php" class="btn btn-primary">Criar Conta</a>
+            <a href="<?= BASE_URL ?>/login.php" class="btn btn-outline">Entrar</a>
+            <a href="<?= BASE_URL ?>/cadastro.php" class="btn btn-primary">Criar Conta</a>
         </div>
     </nav>
 
@@ -41,8 +47,8 @@
                 enquanto aprende Língua Portuguesa e Matemática.
             </p>
             <div class="hero-buttons">
-                <a href="/site_antigravity/cadastro.php" class="btn btn-accent btn-lg">Começar Agora</a>
-                <a href="/site_antigravity/login.php"   class="btn btn-outline-white btn-lg">Já tenho conta</a>
+                <a href="<?= BASE_URL ?>/cadastro.php" class="btn btn-accent btn-lg">Começar Agora</a>
+                <a href="<?= BASE_URL ?>/login.php"   class="btn btn-outline-white btn-lg">Já tenho conta</a>
             </div>
         </div>
     </section>
@@ -182,7 +188,7 @@
         </div>
 
         <div style="margin-top:40px;">
-            <a href="/site_antigravity/cadastro.php" class="btn btn-primary btn-lg">Acessar a Plataforma</a>
+            <a href="<?= BASE_URL ?>/cadastro.php" class="btn btn-primary btn-lg">Acessar a Plataforma</a>
         </div>
     </div>
 

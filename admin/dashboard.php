@@ -1,10 +1,11 @@
 <?php
+require_once dirname(__DIR__) . '/config.php';
 // ============================================================
 // Educa Play — Admin: Dashboard Geral
 // ============================================================
-require_once '../includes/verificar_login.php';
+require_once dirname(__DIR__) . '/includes/verificar_login.php';
 verificar_admin();
-require_once '../includes/conexao.php';
+require_once dirname(__DIR__) . '/includes/conexao.php';
 
 // Estatísticas globais
 $total_alunos = $conn->query("SELECT COUNT(*) as total FROM usuarios WHERE tipo = 'aluno'")->fetch_assoc()['total'];
@@ -40,12 +41,12 @@ $top_alunos = $conn->query("
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel do Professor — Educa Play</title>
-    <link rel="stylesheet" href="/site_antigravity/css/dashboard.css?v=20261023-logo">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/dashboard.css?v=20261023-logo">
 </head>
 <body>
 <div class="app-layout">
 
-    <?php require_once '../includes/header.php'; ?>
+    <?php require_once dirname(__DIR__) . '/includes/header.php'; ?>
 
     <main id="main-content" class="main-content" tabindex="-1">
         <div class="topbar">
@@ -54,8 +55,8 @@ $top_alunos = $conn->query("
                 <p>Acompanhamento de desempenho da turma e estatísticas pedagógicas</p>
             </div>
             <div class="topbar-right">
-                <a href="/site_antigravity/admin/usuarios.php" class="btn btn-outline btn-sm">Gerenciar Alunos</a>
-                <a href="/site_antigravity/admin/resultados.php" class="btn btn-primary btn-sm">Relatório de Partidas</a>
+                <a href="<?= BASE_URL ?>/admin/usuarios.php" class="btn btn-outline btn-sm">Gerenciar Alunos</a>
+                <a href="<?= BASE_URL ?>/admin/resultados.php" class="btn btn-primary btn-sm">Relatório de Partidas</a>
             </div>
         </div>
 

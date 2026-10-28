@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__DIR__) . '/config.php';
 // ============================================================
 // Educa Play — Verificação de Login
 // ============================================================
@@ -17,7 +18,7 @@ if (session_status() === PHP_SESSION_NONE) {
 // Se não existir, significa que o usuário não está logado
 if (!isset($_SESSION['usuario_id'])) {
     // Redireciona para a página de login
-    header('Location: /site_antigravity/login.php');
+    header('Location: ' . BASE_URL . '/login.php');
     exit(); // Para a execução do restante do código
 }
 
@@ -29,7 +30,7 @@ if (!isset($_SESSION['usuario_id'])) {
 function verificar_admin() {
     if (!isset($_SESSION['tipo']) || $_SESSION['tipo'] !== 'admin') {
         // Se não for admin, redireciona para o dashboard do aluno
-        header('Location: /site_antigravity/dashboard.php');
+        header('Location: ' . BASE_URL . '/dashboard.php');
         exit();
     }
 }

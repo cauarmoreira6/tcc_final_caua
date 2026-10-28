@@ -1,9 +1,10 @@
 <?php
+require_once dirname(__DIR__) . '/config.php';
 // ============================================================
 // Educa Play — Jogo 4: Detetive dos Gráficos
 // ============================================================
-require_once '../includes/verificar_login.php';
-require_once '../includes/serie_jogos.php';
+require_once dirname(__DIR__) . '/includes/verificar_login.php';
+require_once dirname(__DIR__) . '/includes/serie_jogos.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -11,13 +12,13 @@ require_once '../includes/serie_jogos.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detetive dos Gráficos — Educa Play</title>
-    <link rel="stylesheet" href="/site_antigravity/css/dashboard.css?v=20261023-logo">
-    <link rel="stylesheet" href="/site_antigravity/css/jogos.css?v=20260616-accessibility">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/dashboard.css?v=20261023-logo">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/jogos.css?v=20260616-accessibility">
 </head>
 <body>
 <div class="app-layout">
 
-    <?php require_once '../includes/header.php'; ?>
+    <?php require_once dirname(__DIR__) . '/includes/header.php'; ?>
 
     <main id="main-content" class="main-content" tabindex="-1">
         <div class="topbar">
@@ -25,7 +26,7 @@ require_once '../includes/serie_jogos.php';
                 <h1>Detetive dos Gráficos</h1>
                 <p>Estatística e Gráficos</p>
             </div>
-            <a href="/site_antigravity/jogos.php" class="btn btn-outline btn-sm">← Voltar</a>
+            <a href="<?= BASE_URL ?>/jogos.php" class="btn btn-outline btn-sm">← Voltar</a>
         </div>
 
         <div class="game-wrapper">
@@ -155,8 +156,8 @@ require_once '../includes/serie_jogos.php';
                 </div>
                 <div class="result-buttons">
                     <button class="btn" style="background:#f39c12;color:#fff;border-radius:50px;padding:12px 28px;font-weight:700;cursor:pointer;" onclick="reiniciarJogo()"> Investigar Novamente</button>
-                    <a href="/site_antigravity/jogos.php" class="btn btn-outline"> Outros Jogos</a>
-                    <a href="/site_antigravity/dashboard.php" class="btn btn-outline"> Dashboard</a>
+                    <a href="<?= BASE_URL ?>/jogos.php" class="btn btn-outline"> Outros Jogos</a>
+                    <a href="<?= BASE_URL ?>/dashboard.php" class="btn btn-outline"> Dashboard</a>
                 </div>
             </div>
 
@@ -168,7 +169,7 @@ require_once '../includes/serie_jogos.php';
     const USUARIO_ID = <?= $_SESSION['usuario_id'] ?>;
 </script>
 <script>const ANO_ESCOLAR = <?= (int)$ano_escolar ?>;</script>
-<script src="/site_antigravity/js/serie_jogos.js"></script>
-<script src="/site_antigravity/js/jogo4.js?v=20261021-streak"></script>
+<script src="<?= BASE_URL ?>/js/serie_jogos.js"></script>
+<script src="<?= BASE_URL ?>/js/jogo4.js?v=20261021-streak"></script>
 </body>
 </html>

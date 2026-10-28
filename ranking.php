@@ -1,9 +1,10 @@
 <?php
+require_once __DIR__ . '/config.php';
 // ============================================================
 // Educa Play — Ranking
 // ============================================================
-require_once 'includes/verificar_login.php';
-require_once 'includes/conexao.php';
+require_once __DIR__ . '/includes/verificar_login.php';
+require_once __DIR__ . '/includes/conexao.php';
 
 $uid = $_SESSION['usuario_id'];
 
@@ -71,12 +72,12 @@ $titulos = [1=>'Iniciante',2=>'Aprendiz',3=>'Explorador',4=>'Aventureiro',5=>'De
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ranking — Educa Play</title>
-    <link rel="stylesheet" href="/site_antigravity/css/dashboard.css?v=20261023-logo">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/dashboard.css?v=20261023-logo">
 </head>
 <body>
 <div class="app-layout">
 
-    <?php require_once 'includes/header.php'; ?>
+    <?php require_once __DIR__ . '/includes/header.php'; ?>
 
     <main id="main-content" class="main-content" tabindex="-1">
 
@@ -95,7 +96,7 @@ $titulos = [1=>'Iniciante',2=>'Aprendiz',3=>'Explorador',4=>'Aventureiro',5=>'De
         <nav aria-label="Filtrar ranking por matéria" style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px;">
             <?php foreach ($filtros_materia as $chave => $filtro): ?>
                 <a
-                    href="/site_antigravity/ranking.php?materia=<?= urlencode($chave) ?>"
+                    href="<?= BASE_URL ?>/ranking.php?materia=<?= urlencode($chave) ?>"
                     class="btn <?= $materia === $chave ? 'btn-primary' : 'btn-outline' ?>"
                     <?= $materia === $chave ? 'aria-current="page"' : '' ?>
                 ><?= htmlspecialchars($filtro['rotulo']) ?></a>

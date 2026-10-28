@@ -1,9 +1,10 @@
 <?php
+require_once __DIR__ . '/config.php';
 // ============================================================
 // Educa Play — Dashboard do Aluno
 // ============================================================
-require_once 'includes/verificar_login.php';  // Protege a página
-require_once 'includes/conexao.php';
+require_once __DIR__ . '/includes/verificar_login.php';  // Protege a página
+require_once __DIR__ . '/includes/conexao.php';
 
 $uid = $_SESSION['usuario_id'];
 
@@ -96,13 +97,13 @@ $stmt->close();
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
-    <link rel="stylesheet" href="/site_antigravity/css/dashboard.css?v=20261023-logo">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/dashboard.css?v=20261023-logo">
 </head>
 <body>
 <div class="app-layout">
 
     <!-- Sidebar -->
-    <?php require_once 'includes/header.php'; ?>
+    <?php require_once __DIR__ . '/includes/header.php'; ?>
 
     <!-- Conteúdo principal -->
     <main id="main-content" class="main-content" tabindex="-1">
@@ -114,7 +115,7 @@ $stmt->close();
                 <p>Bem-vindo de volta à sua aventura matemática!</p>
             </div>
             <div class="topbar-right">
-                <a href="/site_antigravity/jogos.php" class="btn btn-primary"><span class="google-icon" aria-hidden="true">sports_esports</span> Jogar Agora</a>
+                <a href="<?= BASE_URL ?>/jogos.php" class="btn btn-primary"><span class="google-icon" aria-hidden="true">sports_esports</span> Jogar Agora</a>
             </div>
         </div>
 
@@ -200,7 +201,7 @@ $stmt->close();
                     <?php if (empty($conquistas)): ?>
                         <p style="color:#b2bec3;text-align:center;padding:20px 0;">
                             Você ainda não conquistou nenhuma medalha.<br>
-                            <a href="/site_antigravity/jogos.php" style="color:#6c63ff;">Comece jogando! <span class="google-icon" aria-hidden="true">sports_esports</span></a>
+                            <a href="<?= BASE_URL ?>/jogos.php" style="color:#6c63ff;">Comece jogando! <span class="google-icon" aria-hidden="true">sports_esports</span></a>
                         </p>
                     <?php else: ?>
                         <div class="medals-grid">
@@ -213,7 +214,7 @@ $stmt->close();
                         </div>
                     <?php endif; ?>
                     <div style="margin-top:16px;text-align:center;">
-                        <a href="/site_antigravity/conquistas.php" class="btn btn-outline btn-sm">Ver todas →</a>
+                        <a href="<?= BASE_URL ?>/conquistas.php" class="btn btn-outline btn-sm">Ver todas →</a>
                     </div>
                 </div>
 
@@ -297,7 +298,7 @@ $stmt->close();
                         Sua posição: <strong style="color:#6c63ff;">#<?= $minha_pos ?></strong>
                     </div>
                     <div style="margin-top:12px;text-align:center;">
-                        <a href="/site_antigravity/ranking.php" class="btn btn-outline btn-sm">Ranking Completo →</a>
+                        <a href="<?= BASE_URL ?>/ranking.php" class="btn btn-outline btn-sm">Ranking Completo →</a>
                     </div>
                 </div>
 
@@ -305,7 +306,7 @@ $stmt->close();
                 <div class="card">
                     <div class="card-title"><span class="google-icon" aria-hidden="true">sports_esports</span> Jogar Agora</div>
                     <div style="display:flex;flex-direction:column;gap:10px;">
-                        <a href="/site_antigravity/jogos/jogo1.php" style="text-decoration:none;">
+                        <a href="<?= BASE_URL ?>/jogos/jogo1.php" style="text-decoration:none;">
                             <div style="display:flex;align-items:center;gap:12px;padding:14px;background:#f0f2f5;border-radius:10px;transition:all 0.2s;" onmouseover="this.style.background='rgba(108,99,255,0.08)'" onmouseout="this.style.background='#f0f2f5'">
                                 <span class="quick-game-icon google-icon" aria-hidden="true">functions</span>
                                 <div>
@@ -315,7 +316,7 @@ $stmt->close();
                                 <span style="margin-left:auto;color:#b2bec3;">›</span>
                             </div>
                         </a>
-                        <a href="/site_antigravity/jogos/jogo2.php" style="text-decoration:none;">
+                        <a href="<?= BASE_URL ?>/jogos/jogo2.php" style="text-decoration:none;">
                             <div style="display:flex;align-items:center;gap:12px;padding:14px;background:#f0f2f5;border-radius:10px;transition:all 0.2s;" onmouseover="this.style.background='rgba(255,107,53,0.08)'" onmouseout="this.style.background='#f0f2f5'">
                                 <span class="quick-game-icon google-icon" aria-hidden="true">calculate</span>
                                 <div>
@@ -325,7 +326,7 @@ $stmt->close();
                                 <span style="margin-left:auto;color:#b2bec3;">›</span>
                             </div>
                         </a>
-                        <a href="/site_antigravity/jogos/jogo3.php" style="text-decoration:none;">
+                        <a href="<?= BASE_URL ?>/jogos/jogo3.php" style="text-decoration:none;">
                             <div style="display:flex;align-items:center;gap:12px;padding:14px;background:#f0f2f5;border-radius:10px;transition:all 0.2s;" onmouseover="this.style.background='rgba(46,204,113,0.08)'" onmouseout="this.style.background='#f0f2f5'">
                                 <span class="quick-game-icon google-icon" aria-hidden="true">storefront</span>
                                 <div>
@@ -335,7 +336,7 @@ $stmt->close();
                                 <span style="margin-left:auto;color:#b2bec3;">›</span>
                             </div>
                         </a>
-                        <a href="/site_antigravity/jogos/jogo4.php" style="text-decoration:none;">
+                        <a href="<?= BASE_URL ?>/jogos/jogo4.php" style="text-decoration:none;">
                             <div style="display:flex;align-items:center;gap:12px;padding:14px;background:#f0f2f5;border-radius:10px;transition:all 0.2s;" onmouseover="this.style.background='rgba(243,156,18,0.08)'" onmouseout="this.style.background='#f0f2f5'">
                                 <span class="quick-game-icon google-icon" aria-hidden="true">bar_chart</span>
                                 <div>

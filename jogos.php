@@ -1,9 +1,10 @@
 <?php
+require_once __DIR__ . '/config.php';
 // ============================================================
 // Educa Play — Catálogo de Jogos
 // ============================================================
-require_once 'includes/verificar_login.php';
-require_once 'includes/serie_jogos.php';
+require_once __DIR__ . '/includes/verificar_login.php';
+require_once __DIR__ . '/includes/serie_jogos.php';
 
 $uid = $_SESSION['usuario_id'];
 
@@ -25,7 +26,7 @@ $jogos = [
         'descricao' => 'Resolva operações com números positivos e negativos.',
         'dificuldades'=> 'Fácil, Médio e Difícil',
         'cor'       => 'j1',
-        'link'      => '/site_antigravity/jogos/jogo1.php',
+        'link'      => BASE_URL . '/jogos/jogo1.php',
     ],
     2 => [
         'nome'      => 'Cofre das Equações',
@@ -33,7 +34,7 @@ $jogos = [
         'descricao' => 'Descubra o valor de X para resolver as equações com dificuldade crescente.',
         'dificuldades'=> 'Fácil, Médio e Difícil',
         'cor'       => 'j2',
-        'link'      => '/site_antigravity/jogos/jogo2.php',
+        'link'      => BASE_URL . '/jogos/jogo2.php',
     ],
     3 => [
         'nome'      => 'Loja Educa Play',
@@ -41,7 +42,7 @@ $jogos = [
         'descricao' => 'Pratique conceitos de desconto, troco, acréscimo e porcentagens aplicadas.',
         'dificuldades'=> 'Fácil, Médio e Difícil',
         'cor'       => 'j3',
-        'link'      => '/site_antigravity/jogos/jogo3.php',
+        'link'      => BASE_URL . '/jogos/jogo3.php',
     ],
     4 => [
         'nome'      => 'Detetive dos Gráficos',
@@ -49,7 +50,7 @@ $jogos = [
         'descricao' => 'Interprete gráficos de barras e resolva questões de média, moda e mediana.',
         'dificuldades'=> 'Fácil, Médio e Difícil',
         'cor'       => 'j4',
-        'link'      => '/site_antigravity/jogos/jogo4.php',
+        'link'      => BASE_URL . '/jogos/jogo4.php',
     ],
     5 => [
         'nome'      => 'O Revisor de Notícias',
@@ -57,7 +58,7 @@ $jogos = [
         'descricao' => 'Edite manchetes antes da publicação e corrija concordância verbal e nominal.',
         'dificuldades'=> 'Fácil, Médio e Difícil',
         'cor'       => 'j5',
-        'link'      => '/site_antigravity/jogos/jogo5.php',
+        'link'      => BASE_URL . '/jogos/jogo5.php',
     ],
     6 => [
         'nome'      => 'A Batalha das Metáforas',
@@ -65,7 +66,7 @@ $jogos = [
         'descricao' => 'Decifre frases e poemas para identificar metáfora, hipérbole, ironia e personificação.',
         'dificuldades'=> 'Fácil, Médio e Difícil',
         'cor'       => 'j6',
-        'link'      => '/site_antigravity/jogos/jogo6.php',
+        'link'      => BASE_URL . '/jogos/jogo6.php',
     ],
     7 => [
         'nome'      => 'A Fábrica de Histórias',
@@ -73,7 +74,7 @@ $jogos = [
         'descricao' => 'Conecte ideias, organize narrativas e escolha conectivos que façam sentido.',
         'dificuldades'=> 'Fácil, Médio e Difícil',
         'cor'       => 'j7',
-        'link'      => '/site_antigravity/jogos/jogo7.php',
+        'link'      => BASE_URL . '/jogos/jogo7.php',
     ],
     8 => [
         'nome'      => 'A Montagem de Robôs',
@@ -81,7 +82,7 @@ $jogos = [
         'descricao' => 'Monte frases-robô identificando sujeito, núcleo e predicado em cada oração.',
         'dificuldades'=> 'Fácil, Médio e Difícil',
         'cor'       => 'j8',
-        'link'      => '/site_antigravity/jogos/jogo8.php',
+        'link'      => BASE_URL . '/jogos/jogo8.php',
     ],
 ];
 ?>
@@ -91,13 +92,13 @@ $jogos = [
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jogos — Educa Play</title>
-    <link rel="stylesheet" href="/site_antigravity/css/dashboard.css?v=20261023-logo">
-    <link rel="stylesheet" href="/site_antigravity/css/jogos.css?v=20260616-accessibility">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/dashboard.css?v=20261023-logo">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/jogos.css?v=20260616-accessibility">
 </head>
 <body>
 <div class="app-layout">
 
-    <?php require_once 'includes/header.php'; ?>
+    <?php require_once __DIR__ . '/includes/header.php'; ?>
 
     <main id="main-content" class="main-content" tabindex="-1">
 

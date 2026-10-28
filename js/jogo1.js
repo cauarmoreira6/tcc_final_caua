@@ -289,7 +289,7 @@ function salvarResultado() {
     dados.append('maior_sequencia', estado.maiorSequencia);
 
     // fetch() faz uma requisição para o PHP sem recarregar a página
-    fetch('/site_antigravity/jogos/salvar_resultado.php', {
+    fetch(window.BASE_URL + '/jogos/salvar_resultado.php', {
         method: 'POST',
         body:   dados
     })

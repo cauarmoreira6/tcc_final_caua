@@ -361,7 +361,7 @@ function salvarResultado() {
     dados.append('xp_ganho', estado.xp);
     dados.append('maior_sequencia', estado.maiorSequencia);
 
-    fetch('/site_antigravity/jogos/salvar_resultado.php', { method: 'POST', body: dados })
+    fetch(window.BASE_URL + '/jogos/salvar_resultado.php', { method: 'POST', body: dados })
         .then(r => r.json())
         .then(data => {
             if (data.sucesso) {

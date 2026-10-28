@@ -1,9 +1,10 @@
 <?php
+require_once __DIR__ . '/config.php';
 // ============================================================
 // Educa Play — Progresso Detalhado
 // ============================================================
-require_once 'includes/verificar_login.php';
-require_once 'includes/conexao.php';
+require_once __DIR__ . '/includes/verificar_login.php';
+require_once __DIR__ . '/includes/conexao.php';
 
 $uid = $_SESSION['usuario_id'];
 
@@ -54,12 +55,12 @@ $niveis = [
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Progresso — Educa Play</title>
-    <link rel="stylesheet" href="/site_antigravity/css/dashboard.css?v=20261023-logo">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/dashboard.css?v=20261023-logo">
 </head>
 <body>
 <div class="app-layout">
 
-    <?php require_once 'includes/header.php'; ?>
+    <?php require_once __DIR__ . '/includes/header.php'; ?>
 
     <main id="main-content" class="main-content" tabindex="-1">
 
@@ -152,7 +153,7 @@ $niveis = [
             <div class="card-title"> Histórico Completo de Partidas</div>
             <?php if (empty($historico)): ?>
                 <p style="text-align:center;color:#b2bec3;padding:30px 0;">
-                    Nenhuma partida registrada. <a href="/site_antigravity/jogos.php" style="color:#6c63ff;">Comece jogando!</a>
+                    Nenhuma partida registrada. <a href="<?= BASE_URL ?>/jogos.php" style="color:#6c63ff;">Comece jogando!</a>
                 </p>
             <?php else: ?>
                 <div style="overflow-x:auto;">

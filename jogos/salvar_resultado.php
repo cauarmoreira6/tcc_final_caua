@@ -17,7 +17,7 @@ if (!isset($_SESSION['usuario_id'])) {
     exit();
 }
 
-require_once '../includes/conexao.php';
+require_once dirname(__DIR__) . '/includes/conexao.php';
 
 $uid = $_SESSION['usuario_id'];
 

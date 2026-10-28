@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__DIR__) . '/config.php';
 // ============================================================
 // Educa Play — Header/Navbar Reutilizável
 // ============================================================
@@ -19,7 +20,7 @@ $esta_em_admin = (strpos($_SERVER['PHP_SELF'], '/admin/') !== false);
 $inicial = strtoupper(substr($_SESSION['nome'] ?? 'U', 0, 1));
 $avatar_nome = is_string($_SESSION['avatar_path'] ?? null) ? basename($_SESSION['avatar_path']) : '';
 $avatar_url = preg_match('/\A[a-f0-9]{32}\.(?:jpg|png|webp|avif)\z/', $avatar_nome)
-    ? '/site_antigravity/uploads/profile_photos/' . rawurlencode($avatar_nome)
+    ? BASE_URL . '/uploads/profile_photos/' . rawurlencode($avatar_nome)
     : null;
 
 $xp    = $_SESSION['xp']    ?? 0;
@@ -56,7 +57,7 @@ $is_admin = (isset($_SESSION['tipo']) && $_SESSION['tipo'] === 'admin');
     <div class="sidebar-brand">
         <img
             class="sidebar-logo"
-            src="/site_antigravity/assets/images/educa-play-logo.png"
+            src="<?= BASE_URL ?>/assets/images/educa-play-logo.png"
             alt="Educa Play"
             width="72"
             height="72"
@@ -83,19 +84,19 @@ $is_admin = (isset($_SESSION['tipo']) && $_SESSION['tipo'] === 'admin');
 
         <div class="nav-section-label">Principal</div>
 
-        <a href="/site_antigravity/dashboard.php"
+        <a href="<?= BASE_URL ?>/dashboard.php"
            aria-current="<?= (!$esta_em_admin && $pagina_atual === 'dashboard.php') ? 'page' : 'false' ?>"
            class="nav-item <?= (!$esta_em_admin && $pagina_atual === 'dashboard.php') ? 'active' : '' ?>">
             Dashboard
         </a>
 
-        <a href="/site_antigravity/jogos.php"
+        <a href="<?= BASE_URL ?>/jogos.php"
            aria-current="<?= $pagina_atual === 'jogos.php' ? 'page' : 'false' ?>"
            class="nav-item <?= $pagina_atual === 'jogos.php' ? 'active' : '' ?>">
             Jogos
         </a>
 
-        <a href="/site_antigravity/ranking.php"
+        <a href="<?= BASE_URL ?>/ranking.php"
            aria-current="<?= $pagina_atual === 'ranking.php' ? 'page' : 'false' ?>"
            class="nav-item <?= $pagina_atual === 'ranking.php' ? 'active' : '' ?>">
             Ranking
@@ -103,19 +104,19 @@ $is_admin = (isset($_SESSION['tipo']) && $_SESSION['tipo'] === 'admin');
 
         <div class="nav-section-label">Meu Perfil</div>
 
-        <a href="/site_antigravity/perfil.php"
+        <a href="<?= BASE_URL ?>/perfil.php"
            aria-current="<?= $pagina_atual === 'perfil.php' ? 'page' : 'false' ?>"
            class="nav-item <?= $pagina_atual === 'perfil.php' ? 'active' : '' ?>">
             Perfil
         </a>
 
-        <a href="/site_antigravity/conquistas.php"
+        <a href="<?= BASE_URL ?>/conquistas.php"
            aria-current="<?= $pagina_atual === 'conquistas.php' ? 'page' : 'false' ?>"
            class="nav-item <?= $pagina_atual === 'conquistas.php' ? 'active' : '' ?>">
             Conquistas
         </a>
 
-        <a href="/site_antigravity/progresso.php"
+        <a href="<?= BASE_URL ?>/progresso.php"
            aria-current="<?= $pagina_atual === 'progresso.php' ? 'page' : 'false' ?>"
            class="nav-item <?= $pagina_atual === 'progresso.php' ? 'active' : '' ?>">
             Progresso
@@ -124,19 +125,19 @@ $is_admin = (isset($_SESSION['tipo']) && $_SESSION['tipo'] === 'admin');
         <?php if ($is_admin): ?>
         <div class="nav-section-label">Administração</div>
 
-        <a href="/site_antigravity/admin/dashboard.php"
+        <a href="<?= BASE_URL ?>/admin/dashboard.php"
            aria-current="<?= ($esta_em_admin && $pagina_atual === 'dashboard.php') ? 'page' : 'false' ?>"
            class="nav-item <?= ($esta_em_admin && $pagina_atual === 'dashboard.php') ? 'active' : '' ?>">
             Painel Admin
         </a>
 
-        <a href="/site_antigravity/admin/usuarios.php"
+        <a href="<?= BASE_URL ?>/admin/usuarios.php"
            aria-current="<?= ($esta_em_admin && $pagina_atual === 'usuarios.php') ? 'page' : 'false' ?>"
            class="nav-item <?= ($esta_em_admin && $pagina_atual === 'usuarios.php') ? 'active' : '' ?>">
             Alunos
         </a>
 
-        <a href="/site_antigravity/admin/resultados.php"
+        <a href="<?= BASE_URL ?>/admin/resultados.php"
            aria-current="<?= ($esta_em_admin && $pagina_atual === 'resultados.php') ? 'page' : 'false' ?>"
            class="nav-item <?= ($esta_em_admin && $pagina_atual === 'resultados.php') ? 'active' : '' ?>">
             Resultados
@@ -147,7 +148,7 @@ $is_admin = (isset($_SESSION['tipo']) && $_SESSION['tipo'] === 'admin');
 
     <!-- Rodapé da sidebar -->
     <div class="sidebar-footer">
-        <a href="/site_antigravity/logout.php" class="nav-item">
+        <a href="<?= BASE_URL ?>/logout.php" class="nav-item">
             Sair
         </a>
     </div>

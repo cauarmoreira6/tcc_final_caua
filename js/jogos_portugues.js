@@ -247,7 +247,7 @@ function salvarResultado(xp) {
     dados.append('xp_ganho', xp);
     dados.append('maior_sequencia', estadoPortugues.maiorSequencia);
 
-    fetch('/site_antigravity/jogos/salvar_resultado.php', { method: 'POST', body: dados })
+    fetch(window.BASE_URL + '/jogos/salvar_resultado.php', { method: 'POST', body: dados })
         .then(resposta => {
             if (!resposta.ok) throw new Error('Não foi possível salvar o resultado.');
             return resposta.json();
