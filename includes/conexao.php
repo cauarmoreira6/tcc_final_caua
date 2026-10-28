@@ -8,14 +8,11 @@
 // ============================================================
 
 // Configurações de conexão
-const DB_HOST = '127.0.0.1';   // Endereço do servidor MySQL (XAMPP usa localhost)
-const DB_PORT = 3308;        // Usuário padrão do XAMPP
-const DB_USER = 'root';            // Senha padrão do XAMPP é vazia
-const DB_NAME = 'mathplay';    // Nome do banco de dados
+require_once dirname(__DIR__) . '/config.php';
 
 // Cria a conexão
-// new mysqli() tenta conectar ao MySQL com os dados acima
-$conn = new mysqli("localhost", "root", "", "mathplay", "3308");
+// Os dados são carregados de config.php para separar ambiente local e produção
+$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT);
 
 // Verifica se houve erro na conexão
 if ($conn->connect_error) {
@@ -23,8 +20,8 @@ if ($conn->connect_error) {
     die('<div style="text-align:center;padding:50px;font-family:sans-serif;">
             <h2 style="color:#e74c3c;"> Erro de Conexão</h2>
             <p>Não foi possível conectar ao banco de dados.</p>
-            <p><small>' . $conn->connect_error . '</small></p>
-            <p>Verifique se o XAMPP está rodando (Apache + MySQL).</p>
+            <p><small>Erro interno ao acessar o banco de dados.</small></p>
+            <p>Verifique as credenciais em config.php.</p>
          </div>');
 }
 
