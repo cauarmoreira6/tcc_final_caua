@@ -1,0 +1,74 @@
+EDUCA PLAY - Relatorio de investigacao da pagina branca
+Atualizacao remota: 2026-10-28
+Data: 2026-10-28 08:22:42
+Ambiente: Laragon local / PHP CLI 8.3.30
+
+1) Teste de sintaxe PHP
+PHP 8.3.30 (cli) (built: Jan 13 2026 22:50:40) (ZTS Visual C++ 2019 x64)
+Arquivos PHP analisados: 28
+Arquivos com erro: 0
+Resultado: PASS
+
+2) Teste HTTP local
+index.php: HTTP 200; 9514 caracteres
+DOCTYPE encontrado: True
+main encontrado: True
+acessibilidade encontrada: False
+logo encontrada: True
+CSS: HTTP 200; 11146 bytes
+Logo: HTTP 200; 340271 bytes
+Resultado HTTP: PASS
+
+3) Evidencias do projeto
+index.php nao inclui conexao.php. Ou seja, falha de banco nao pode deixar esta pagina vazia diretamente.
+index.php inclui apenas includes/accessibility.php e este arquivo foi aprovado na sintaxe e existe.
+Todas as paginas usam caminhos absolutos /site_antigravity/, invalidos se o projeto estiver na raiz do htdocs sem essa pasta.
+includes/conexao.php usa localhost/root/mathplay/3308, configuracoes locais que nao valem automaticamente no InfinityFree.
+
+4) Conclusao tecnica
+Baseado somente nos testes locais, nao e possivel atribuir o problema a uma falha de codigo do index.
+O PHP local processa o index, os assets carregam e 28 arquivos PHP passam na sintaxe.
+A causa remota mais provavel e: arquivos publicados fora de htdocs, PHP nao processando .php, index.php ausente/incompativel na pasta publica, ou erro fatal ocultado por display_errors=Off.
+A falha de banco nao explica diretamente uma pagina branca no index, mas pode explicar login/cadastro/areas internas.
+
+5) Proximos testes remotos obrigatorios
+1. criar teste.php com <?php echo "PHP_OK"; ?> na pasta publica e abrir pela URL.
+2. abrir /includes/accessibility.php; esperado HTML ou codigo se PHP estiver ativo.
+3. consultar o Error Log do InfinityFree imediatamente apos abrir index.php.
+4. conferir se index.php esta dentro de htdocs ou htdocs/site_antigravity conforme a URL.
+5. substituir conexao.php pelas credenciais remotas do painel MySQL.
+6. confirmar PHP 8.x ativo e mysqli habilitado no painel.
+
+TESTE REMOTO EXECUTADO: https://educaplay.site.je/
+Root: HTTP 200, 844 bytes, text/html, servidor openresty, sem DOCTYPE Educa Play e sem marcador <?php.
+index.php: HTTP 200, 853 bytes, sem conteudo PHP, sem DOCTYPE Educa Play.
+login.php: HTTP 200, 853 bytes, sem DOCTYPE Educa Play.
+includes/accessibility.php: HTTP 200, 870 bytes, sem conteudo PHP esperado.
+css/style.css na raiz: HTTP 404.
+favicon nao relevante.
+
+CONTEUDO RETORNADO PELO SERVIDOR
+HTML curto com script de desafio AES, cookie __test, redirecionamento ?i=1 e aviso noscript sobre Javascript.
+Isso indica que a resposta inicial esta sendo interceptada pela protecao/proxy do provedor ou pelo dominio, antes da aplicacao PHP.
+
+VARREDURA REMOTA DE CAMINHO
+Testados /, /index.php, /login.php, /includes/accessibility.php, /css/style.css, /assets/images/educa-play-logo.png, /site_antigravity/ e variantes.
+Nenhum caminho retornou index.php real, CSS ou logo. Todos os caminhos PHP receberam a mesma resposta curta de protecao.
+
+CONCLUSAO ATUALIZADA COM DADO REMOTO
+Nao existe evidencia remota de que o index.php foi executado. Os testes remotos encontram o dominio no desafio do servidor/proxy, nao o Educa Play.
+A causa mais imediata nao pode ser banco de dados: no teste do index.php real, o CSS e logo no app nunca chegam a carregar e o servidor ainda nao entregou HTML da aplicacao.
+Hipoteses prioritarias, nesta ordem:
+1. Protecao Anti-DDoS/desafio de Javascript do InfinityFree impedindo a primeira resposta ou interferindo em HTTP automatizado.
+2. Arquivos enviados para diretório errado, nao publicados em htdocs e, portanto, tratando domínio como pagina vazia/default.
+3. Cache/CDNS/domínio apontando incorretamente, DNS antigo ou erro de configuracao do site gratuito.
+4. PHP nao executando ou erro fatal, depois que o desafio/proxy liberar o acesso.
+
+CORRECOES A FAZER NO PAINEL
+1. Confirmar o nome da conta/domínio e abrir o gerenciador de arquivos InfinityFree.
+2. Colocar index.php diretamente em htdocs, nao dentro de uma pasta fora da raiz publica.
+3. Subir todas as pastas includes, css, js, assets, jogos e admin dentro de htdocs mantendo estrutura original.
+4. Limpar cache do navegador/domínio e testar em nova janela privada.
+5. Desativar temporariamente protecoes excessivas/Cloudflare do dominio, se houver, para testar.
+6. Depois que o app aparecer, atualizar includes/conexao.php com o servidor, banco, usuario e senha remotos.
+7. Testar /teste.php simples e olhar o Error Log apos cada troca.
